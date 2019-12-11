@@ -1,5 +1,5 @@
+import { HeroComponent } from "./../hero/hero.component";
 import { Component, OnInit } from "@angular/core";
-import { Hero } from "../hero";
 
 @Component({
   selector: "app-heroes",
@@ -7,7 +7,12 @@ import { Hero } from "../hero";
   styleUrls: ["./heroes.component.css"]
 })
 export class HeroesComponent implements OnInit {
-  hero = "Windstorm";
+  hero: HeroComponent = {
+    id: 1,
+    name: "Windstorm",
+    //'ngOnInit() {}' vlozeno jen aby to nehazelo chybu - kdyztak vyhodit
+    ngOnInit() {}
+  };
 
   constructor() {}
 
