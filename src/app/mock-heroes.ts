@@ -1,7 +1,7 @@
 import { HeroComponent } from "./hero/hero.component";
 
 export const HEROES: HeroComponent[] = [
-  //'ngOnInit() {}' vlozeno jen aby to nehazelo chybu - kdyztak vyhodit
+  // 'ngOnInit() {}' vlozeno jen aby to nehazelo chybu - kdyztak vyhodit
   { id: 11, name: "Dr Nice", ngOnInit() {} },
   { id: 12, name: "Narco", ngOnInit() {} },
   { id: 13, name: "Bombasto", ngOnInit() {} },
