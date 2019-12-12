@@ -1,3 +1,4 @@
+import { HEROES } from "./../mock-heroes";
 import { HeroComponent } from "./../hero/hero.component";
 import { Component, OnInit } from "@angular/core";
 
@@ -7,12 +8,11 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./heroes.component.css"]
 })
 export class HeroesComponent implements OnInit {
-  hero: HeroComponent = {
-    id: 1,
-    name: "Windstorm",
-    //'ngOnInit() {}' vlozeno jen aby to nehazelo chybu - kdyztak vyhodit
-    ngOnInit() {}
-  };
+  heroes = HEROES;
+  selectedHero: HeroComponent;
+  onSelect(hero: HeroComponent): void {
+    this.selectedHero = hero;
+  }
 
   constructor() {}
 
