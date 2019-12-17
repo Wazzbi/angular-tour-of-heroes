@@ -36,3 +36,29 @@ button.clear {
   color: #333;
   margin-bottom: 12px;
 }
+.fadeOutNext {
+  width: 300px;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  /*border-bottom: 3px solid #777;*/
+  height: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  content: "";
+  background: -webkit-linear-gradient(#000, #fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.fadeOutNext:hover {
+  width: 300px;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  /*border-bottom: 3px solid #777;*/
+  height: 300px;
+  /*overflow: hidden;
+  text-overflow: ellipsis;
+  content: "";*/
+  background: -webkit-linear-gradient(rgb(0, 0, 0), rgb(0, 0, 0));
+  -webkit-background-clip: text;
+  color: solid black;
+}
