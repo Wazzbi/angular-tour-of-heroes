@@ -12,7 +12,11 @@ import { HeroService } from "../hero.service";
 export class HeroDetailComponent implements OnInit {
   @Input() hero: HeroComponent;
 
-  constructor() {}
+  constructor(
+    private route: ActivatedRoute,
+    private heroService: HeroService,
+    private location: Location
+  ) {}
 
   ngOnInit() {}
 }
