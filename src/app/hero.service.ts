@@ -10,8 +10,17 @@ import { Observable, of } from "rxjs";
 export class HeroService {
   getHeroes(): Observable<HeroComponent[]> {
     // TODO: send the message _after_ fetching the heroes
-    this.messageService.add("HeroService: fetched heroes");
+    this.messageService.add(
+      `${new Date().toLocaleTimeString()} \xa0\xa0 HeroService: fetched heroes`
+    );
     return of(HEROES);
+  }
+  getHero(id: number): Observable<HeroComponent> {
+    // TODO: send the message _after_ fetching the hero
+    this.messageService.add(
+      `${new Date().toLocaleTimeString()} \xa0\xa0 HeroService: fetched hero id=${id}`
+    );
+    return of(HEROES.find(hero => hero.id === id));
   }
 
   constructor(private messageService: MessageService) {}

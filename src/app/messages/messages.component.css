@@ -37,11 +37,11 @@ button.clear {
   margin-bottom: 12px;
 }
 .fadeOutNext {
-  width: 300px;
+  width: 500px;
   margin-bottom: 5px;
   padding-bottom: 5px;
   /*border-bottom: 3px solid #777;*/
-  height: 50px;
+  height: 300px;
   overflow: hidden;
   text-overflow: ellipsis;
   content: "";
@@ -50,7 +50,7 @@ button.clear {
   -webkit-text-fill-color: transparent;
 }
 .fadeOutNext:hover {
-  width: 300px;
+  width: 500px;
   margin-bottom: 5px;
   padding-bottom: 5px;
   /*border-bottom: 3px solid #777;*/
