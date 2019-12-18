@@ -41,7 +41,7 @@ button.clear {
   margin-bottom: 5px;
   padding-bottom: 5px;
   /*border-bottom: 3px solid #777;*/
-  height: 300px;
+  height: 100px;
   overflow: hidden;
   text-overflow: ellipsis;
   content: "";
