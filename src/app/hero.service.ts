@@ -9,12 +9,28 @@ import { catchError, map, tap } from "rxjs/operators";
   providedIn: "root"
 })
 export class HeroService {
+  constructor(
+    private http: HttpClient,
+    private messageService: MessageService
+  ) {}
+
   private heroesUrl = "api/heroes"; // URL to web api
+
+  httpOptions = {
+    headers: new HttpHeaders({ "Content-Type": "application/json" })
+  };
+
+  /* Log a HeroService message with the MessageService */
+  private log(message: string) {
+    this.messageService.add(
+      `${new Date().toLocaleTimeString()} \xa0\xa0 HeroService: ${message}`
+    );
+  }
 
   /** GET heroes from the server */
   getHeroes(): Observable<HeroComponent[]> {
     return this.http.get<HeroComponent[]>(this.heroesUrl).pipe(
-      tap(_ => this.log("fetched heroes")),
+      tap(_ => this.log(`fetched heroes`)),
       catchError(this.handleError<HeroComponent[]>("getHeroes", []))
     );
   }
@@ -25,11 +41,6 @@ export class HeroService {
       tap(_ => this.log(`fetched hero id=${id}`)),
       catchError(this.handleError<HeroComponent>(`getHero id=${id}`))
     );
-  }
-
-  /* Log a HeroService message with the MessageService */
-  private log(message: string) {
-    this.messageService.add(`HeroService: ${message}`);
   }
 
   /**
@@ -51,8 +62,23 @@ export class HeroService {
     };
   }
 
-  constructor(
-    private http: HttpClient,
-    private messageService: MessageService
-  ) {}
+  /** PUT: update the hero on the server */
+  updateHero(hero: HeroComponent): Observable<any> {
+    return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
+      tap(_ => this.log(`updated hero id=${hero.id}`)),
+      catchError(this.handleError<any>("updateHero"))
+    );
+  }
+
+  /** POST: add a new hero to the server */
+  addHero(hero: HeroComponent): Observable<HeroComponent> {
+    return this.http
+      .post<HeroComponent>(this.heroesUrl, hero, this.httpOptions)
+      .pipe(
+        tap((newHero: HeroComponent) =>
+          this.log(`added hero w/ id=${newHero.id}`)
+        ),
+        catchError(this.handleError<HeroComponent>("addHero"))
+      );
+  }
 }
