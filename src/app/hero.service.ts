@@ -81,4 +81,29 @@ export class HeroService {
         catchError(this.handleError<HeroComponent>("addHero"))
       );
   }
+
+  /** DELETE: delete the hero from the server */
+  deleteHero(hero: HeroComponent | number): Observable<HeroComponent> {
+    const id = typeof hero === "number" ? hero : hero.id;
+    const url = `${this.heroesUrl}/${id}`;
+
+    return this.http.delete<HeroComponent>(url, this.httpOptions).pipe(
+      tap(_ => this.log(`deleted hero id=${id}`)),
+      catchError(this.handleError<HeroComponent>("deleteHero"))
+    );
+  }
+
+  /* GET heroes whose name contains search term */
+  searchHeroes(term: string): Observable<HeroComponent[]> {
+    if (!term.trim()) {
+      // if not search term, return empty hero array.
+      return of([]);
+    }
+    return this.http
+      .get<HeroComponent[]>(`${this.heroesUrl}/?name=${term}`)
+      .pipe(
+        tap(_ => this.log(`found heroes matching "${term}"`)),
+        catchError(this.handleError<HeroComponent[]>("searchHeroes", []))
+      );
+  }
 }
